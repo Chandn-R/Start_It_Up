@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type":"module",
+    "predev": "npm run typegen",
+    "prebuild": "npm run typegen",
+    "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
   },
   "packageManager": "npm@10.5.2",
   "overrides": {
@@ -14,14 +18,21 @@
     "react-dom": "$react"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.1",
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^3.70.0",
     "@tailwindcss/typography": "^0.5.16",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.471.1",
     "next": "15.1.4",
     "next-auth": "^5.0.0-beta.25",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "next-sanity": "^9.8.29-canary.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sanity": "^3.70.0",
+    "sanity-plugin-markdown": "^5.0.0",
+    "styled-components": "^6.1.14",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
