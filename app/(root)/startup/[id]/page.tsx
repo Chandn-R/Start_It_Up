@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { client } from "@/sanity/lib/client";
 import { STARTUP_BY_ID_QUERY } from "@/sanity/lib/querry";
 import Image from 'next/image';
@@ -6,6 +6,9 @@ import { formateDate } from '../../../../lib/utils';
 import markdownit from 'markdown-it';
 import Link from 'next/link';
 import { notFound } from "next/navigation";
+import { Skeleton } from "@/components/ui/skeleton";
+import View from "@/components/View";
+
 
 export const experimental_ppr = true;
 
@@ -15,7 +18,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const post = await client.fetch(STARTUP_BY_ID_QUERY, { id });
 
     if (!post) return notFound();
-    
+
         const md = markdownit();
         const parsedContent = md.render(post?.pitch || "");
 
@@ -71,6 +74,12 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
 
         <hr className="divider" />
+        {/* {TODO} */}
+
+          <Suspense fallback={<Skeleton className="view_skeleton"/>}>
+          <View id={id}/>
+          </Suspense>
+
         </section>
     </>
 };
