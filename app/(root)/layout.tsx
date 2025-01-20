@@ -6,6 +6,7 @@ export default function Layout({ children }: Readonly<{ children: React.ReactNod
             
             <Navbar/>
             {children}
+            
         </main>
     )
 }
